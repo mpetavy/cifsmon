@@ -30,7 +30,7 @@ var (
 )
 
 func init() {
-	common.Init("cifsmon", "1.0.0", "2018", "monitor the accessibility of shares", "mpetavy", common.APACHE, "https://github.com/mpetavy/traclink", true, nil, nil, tick, time.Second*5)
+	common.Init("1.0.0", "2018", "monitor the accessibility of shares", "mpetavy", common.APACHE, true, nil, nil, tick, time.Second*5)
 
 	host = flag.String("h", "", "host")
 	port = flag.Int("p", 445, "cifs port")
