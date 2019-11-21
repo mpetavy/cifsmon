@@ -56,7 +56,7 @@ func cifs() bool {
 	debug := false
 	session, err := smb.NewSession(options, debug)
 	if err != nil {
-		common.DebugError(err)
+		common.WarnError(err)
 
 		return false
 	}
@@ -95,7 +95,7 @@ func ping() bool {
 	if err == nil {
 		common.Debug("Pinging successful")
 	} else {
-		common.DebugError(err)
+		common.WarnError(err)
 		common.Debug("Pinging failed")
 	}
 
@@ -119,7 +119,7 @@ func readfile() bool {
 	if b {
 		common.Debug("Reading file %s successful", *filename)
 	} else {
-		common.DebugError(err)
+		common.WarnError(err)
 		common.Debug("Reading file %s failed", *filename)
 	}
 
