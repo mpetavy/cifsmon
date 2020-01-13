@@ -19,9 +19,6 @@ var (
 	workstation *string
 	password    *string
 	filename    *string
-	ticktime    *int
-
-	ticker *time.Ticker
 
 	firstTick = true
 
@@ -40,7 +37,6 @@ func init() {
 	workstation = flag.String("s", "", "cifs workstation")
 	password = flag.String("w", "", "cifs password")
 	filename = flag.String("f", "", "filename")
-	ticktime = flag.Int("t", 1000, "ticktime in ms")
 }
 
 func cifs() bool {
@@ -57,7 +53,7 @@ func cifs() bool {
 	debug := false
 	session, err := smb.NewSession(options, debug)
 	if err != nil {
-		common.WarnError(err)
+		common.Error(err)
 
 		return false
 	}
@@ -96,7 +92,7 @@ func ping() bool {
 	if err == nil {
 		common.Debug("Pinging successful")
 	} else {
-		common.WarnError(err)
+		common.Error(err)
 		common.Debug("Pinging failed")
 	}
 
@@ -120,7 +116,7 @@ func readfile() bool {
 	if b {
 		common.Debug("Reading file %s successful", *filename)
 	} else {
-		common.WarnError(err)
+		common.Error(err)
 		common.Debug("Reading file %s failed", *filename)
 	}
 
