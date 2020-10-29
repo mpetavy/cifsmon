@@ -28,7 +28,7 @@ var (
 )
 
 func init() {
-	common.Init(true, "1.0.0", "", "2018", "monitor the accessibility of shares", "mpetavy", fmt.Sprintf("https://github.com/mpetavy/%s", common.Title()), common.APACHE, nil, nil, tick, time.Second*5)
+	common.Init(true, "1.0.0", "", "2018", "monitor the accessibility of shares", "mpetavy", fmt.Sprintf("https://github.com/mpetavy/%s", common.Title()), common.APACHE, nil, nil, run, time.Second*5)
 
 	host = flag.String("h", "", "host")
 	port = flag.Int("p", 445, "cifs port")
@@ -70,7 +70,7 @@ func cifs() bool {
 		common.Debug("Login failed")
 	}
 
-	return err == nil
+	return true
 }
 
 func ping() bool {
@@ -122,7 +122,7 @@ func readfile() bool {
 	return b
 }
 
-func tick() error {
+func run() error {
 	pingOk := ping()
 	cifsOk := cifs()
 	readfileOk := readfile()
