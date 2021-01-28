@@ -105,17 +105,20 @@ func readfile() bool {
 
 	common.Debug("Trying to read file %s ...", *filename)
 
-	b, err := common.FileExists(*filename)
+	b := common.FileExists(*filename)
 	if b {
-		_, err = ioutil.ReadFile(*filename)
+		_, err := ioutil.ReadFile(*filename)
 
 		b = err == nil
+
+		if !b {
+			common.Error(err)
+		}
 	}
 
 	if b {
 		common.Debug("Reading file %s successful", *filename)
 	} else {
-		common.Error(err)
 		common.Debug("Reading file %s failed", *filename)
 	}
 
