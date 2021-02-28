@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
-	"io/ioutil"
+	"os"
 	"os/exec"
 	"time"
 
@@ -107,7 +107,7 @@ func readfile() bool {
 
 	b := common.FileExists(*filename)
 	if b {
-		_, err := ioutil.ReadFile(*filename)
+		_, err := os.ReadFile(*filename)
 
 		b = err == nil
 
